@@ -34,11 +34,14 @@ public class Main extends JFrame {
 
         JMenuItem major = new JMenuItem("How many students are in each major?"); //queries done :)
         major.addActionListener(new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 System.out.println("Just clicked option 1");
                 Vis.queryNumber = 1;
                 try {
+
                     Connection conn = DriverManager.getConnection("jdbc:derby:/home/abbygsmith21/database/pollster");
                     Statement stmt = conn.createStatement();
 
@@ -57,8 +60,6 @@ public class Main extends JFrame {
                     cscount.next();
                     int countcs = cscount.getInt(1);
 
-                    int total = countit + countis + countcs; //SHOULD EQUAL 342 FOR ALL QUERIES
-
                     //adding values to the hashtable
                     majorTable.put(0, countit);
                     majorTable.put(1, countis);
@@ -68,6 +69,7 @@ public class Main extends JFrame {
                     conn.close();
 
                 } catch (SQLException throwables) {
+
                     throwables.printStackTrace();
                 }
             }
@@ -75,11 +77,14 @@ public class Main extends JFrame {
 
         JMenuItem locale = new JMenuItem("How many students are from each home area?"); //queries done :)
         locale.addActionListener(new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 System.out.println("Just clicked option 2");
                 Vis.queryNumber = 2;
                 try {
+
                     Connection conn = DriverManager.getConnection("jdbc:derby:/home/abbygsmith21/database/pollster");
                     Statement stmt = conn.createStatement();
 
@@ -108,8 +113,6 @@ public class Main extends JFrame {
                     countpacific.next();
                     int pacificcount = countpacific.getInt(1);
 
-                    int total = hawaiicount + asiacount + uscount + othercount + pacificcount;
-
                     //adding values to table
                     localeTable.put(0, hawaiicount);
                     localeTable.put(1, asiacount);
@@ -120,6 +123,7 @@ public class Main extends JFrame {
                     contents.repaint();
                     conn.close();
                 } catch (SQLException throwables) {
+
                     throwables.printStackTrace();
                 }
             }
@@ -127,11 +131,14 @@ public class Main extends JFrame {
 
         JMenuItem gpa = new JMenuItem("What is the average GPA for each major?"); //queries done :)
         gpa.addActionListener(new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 System.out.println("Just clicked option 3");
                 Vis.queryNumber = 3;
                 try {
+
                     Connection conn = DriverManager.getConnection("jdbc:derby:/home/abbygsmith21/database/pollster");
                     Statement stmt = conn.createStatement();
 
@@ -158,6 +165,7 @@ public class Main extends JFrame {
                     contents.repaint();
                     conn.close();
                 } catch (SQLException throwables) {
+
                     throwables.printStackTrace();
                 }
             }
@@ -165,11 +173,14 @@ public class Main extends JFrame {
 
         JMenuItem credits = new JMenuItem("What is the average number of credits attempted per year?"); //queries done :)
         credits.addActionListener(new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 System.out.println("Just clicked option 4");
                 Vis.queryNumber = 4;
                 try {
+
                     Connection conn = DriverManager.getConnection("jdbc:derby:/home/abbygsmith21/database/pollster");
                     Statement stmt = conn.createStatement();
 
@@ -244,6 +255,7 @@ public class Main extends JFrame {
                     contents.repaint();
                     conn.close();
                 } catch (SQLException throwables) {
+
                     throwables.printStackTrace();
                 }
             }
@@ -251,11 +263,14 @@ public class Main extends JFrame {
 
         JMenuItem age = new JMenuItem("How many students are from each age group?"); //queries done :)
         age.addActionListener(new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 System.out.println("Just clicked option 5");
                 Vis.queryNumber = 5;
                 try {
+
                     Connection conn = DriverManager.getConnection("jdbc:derby:/home/abbygsmith21/database/pollster");
                     Statement stmt = conn.createStatement();
 
@@ -290,22 +305,25 @@ public class Main extends JFrame {
                     ageTable.put(3, dcount);
                     ageTable.put(4, ecount);
 
-
                     contents.repaint();
                     conn.close();
                 } catch (SQLException throwables) {
+
                     throwables.printStackTrace();
                 }
             }
         });
 
-        JMenuItem studentsPerGpa = new JMenuItem("Number of students per GPA"); //TODO this query freezes the whole program - why?
+        JMenuItem studentsPerGpa = new JMenuItem("Number of students per GPA");
         studentsPerGpa.addActionListener(new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 System.out.println("Just clicked option 6");
                 Vis.queryNumber = 6;
                 try {
+
                     Connection conn = DriverManager.getConnection("jdbc:derby:/home/abbygsmith21/database/pollster");
                     Statement stmt = conn.createStatement();
 
@@ -337,7 +355,6 @@ public class Main extends JFrame {
                     sevencount.next();
                     int countseven = sevencount.getInt(1);
 
-
                     //adding values to the hashtable
                     spgTable.put(0, countone);
                     spgTable.put(1, counttwo);
@@ -351,6 +368,7 @@ public class Main extends JFrame {
                     conn.close();
 
                 } catch (SQLException throwables) {
+
                     throwables.printStackTrace();
                 }
             }
@@ -358,8 +376,10 @@ public class Main extends JFrame {
 
         JMenuItem bar = new JMenuItem("Bar");
         bar.addActionListener(new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 System.out.println("Bar chart selected");
                 Vis.chartType = "bar";
             }
@@ -367,8 +387,10 @@ public class Main extends JFrame {
 
         JMenuItem line = new JMenuItem("Line");
         line.addActionListener(new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 System.out.println("Line chart selected");
                 Vis.chartType = "line";
             }
@@ -388,15 +410,10 @@ public class Main extends JFrame {
         mb.add(type);
 
         return mb;
-
     }
 
     public static void main(String[] args) {
 
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                new Main();
-            }
-        });
+        javax.swing.SwingUtilities.invokeLater(Main::new);
     }
 }
