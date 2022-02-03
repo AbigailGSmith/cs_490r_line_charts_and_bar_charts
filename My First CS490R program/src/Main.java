@@ -356,9 +356,23 @@ public class Main extends JFrame {
             }
         });
 
-        JMenuItem bar = new JMenuItem("Bar"); //TODO add action listeners
+        JMenuItem bar = new JMenuItem("Bar");
+        bar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Bar chart selected");
+                Vis.chartType = "bar";
+            }
+        });
 
         JMenuItem line = new JMenuItem("Line");
+        line.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Line chart selected");
+                Vis.chartType = "line";
+            }
+        });
 
         //adding questions to the menu bar
         file.add(major);
